@@ -1,3 +1,4 @@
+#
 class Address < ApplicationRecord
   def self.postal_code_regex
     /\A[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d\z/i
