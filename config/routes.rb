@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  get 'public_site/index'
+  root to: 'public_site#index'
 
-  get 'public_site/contact'
+  get '/contact', to: 'public_site#contact'
 
-  get 'public_site/about'
+  get '/about', to: 'public_site#about'
 
-  get 'public_site/pricing'
+  get '/pricing', to: 'public_site#pricing'
 
-  get 'public_site/demo'
+  get '/demo', to: 'public_site#demo'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
