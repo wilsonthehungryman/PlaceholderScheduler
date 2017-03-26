@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'public_site#index'
 
   get '/contact', to: 'public_site#contact'
