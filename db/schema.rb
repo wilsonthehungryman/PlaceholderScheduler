@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326193556) do
+ActiveRecord::Schema.define(version: 20170326205411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 20170326193556) do
     t.string   "user_name"
     t.integer  "permission"
     t.boolean  "active"
+    t.integer  "association_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -151,4 +152,5 @@ ActiveRecord::Schema.define(version: 20170326193556) do
   add_foreign_key "leagues", "sports"
   add_foreign_key "provinces", "countries"
   add_foreign_key "users", "addresses"
+  add_foreign_key "users", "associations"
 end
