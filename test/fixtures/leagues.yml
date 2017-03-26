@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  acronym: MyString
+  age_min: 1
+  age_max: 1
+  male: false
+  female: false
+
+two:
+  name: MyString
+  acronym: MyString
+  age_min: 1
+  age_max: 1
+  male: false
+  female: false
