@@ -5,6 +5,6 @@ class Arena < ApplicationRecord
             uniqueness: { scope: :address,
                           message: 'Needs to be a unique identifier' }
   belongs_to :address
-  validates_association :address
+  validates_associated :address
   has_many :games
 end

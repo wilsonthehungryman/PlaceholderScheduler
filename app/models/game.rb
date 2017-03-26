@@ -5,6 +5,6 @@ class Game < ApplicationRecord
   belongs_to :arena
   belongs_to :league
   belongs_to :sport
-  validates_association :arena
-  validates_association :league
+  validates_associated :arena
+  validates_associated :league
 end

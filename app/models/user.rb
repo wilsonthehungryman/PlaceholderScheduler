@@ -5,8 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :address
-  belongs_to :association
-  validates_association :address
-  validates_association :association
+  #belongs_to :association
+  validates_associated :address
+  #validates_association :association
   validates :name, :user_name, :permission, :active, presence: true
 end
