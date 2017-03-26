@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326193230) do
+ActiveRecord::Schema.define(version: 20170326193556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170326193230) do
     t.string   "court_identifier"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "address_id"
   end
 
   create_table "associations", force: :cascade do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170326193230) do
     t.string   "acronym"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "sport_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -84,6 +86,9 @@ ActiveRecord::Schema.define(version: 20170326193230) do
     t.string   "away"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "sport_id"
+    t.integer  "arena_id"
+    t.integer  "league_id"
   end
 
   create_table "leagues", force: :cascade do |t|
@@ -93,8 +98,10 @@ ActiveRecord::Schema.define(version: 20170326193230) do
     t.integer  "age_max"
     t.boolean  "male"
     t.boolean  "female"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "sport_id"
+    t.integer  "association_id"
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -135,6 +142,13 @@ ActiveRecord::Schema.define(version: 20170326193230) do
   end
 
   add_foreign_key "addresses", "provinces"
+  add_foreign_key "arenas", "addresses"
+  add_foreign_key "associations", "sports"
+  add_foreign_key "games", "arenas"
+  add_foreign_key "games", "leagues"
+  add_foreign_key "games", "sports"
+  add_foreign_key "leagues", "associations"
+  add_foreign_key "leagues", "sports"
   add_foreign_key "provinces", "countries"
   add_foreign_key "users", "addresses"
 end
