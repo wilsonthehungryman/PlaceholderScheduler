@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326205411) do
+ActiveRecord::Schema.define(version: 20170326215843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,14 +65,6 @@ ActiveRecord::Schema.define(version: 20170326205411) do
     t.integer  "address_id"
   end
 
-  create_table "associations", force: :cascade do |t|
-    t.string   "name"
-    t.string   "acronym"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "sport_id"
-  end
-
   create_table "countries", force: :cascade do |t|
     t.string   "name"
     t.string   "abbreviation"
@@ -98,10 +90,18 @@ ActiveRecord::Schema.define(version: 20170326205411) do
     t.integer  "age_max"
     t.boolean  "male"
     t.boolean  "female"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "sport_id"
-    t.integer  "association_id"
+    t.integer  "official_association_id"
+  end
+
+  create_table "official_associations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "acronym"
+    t.integer  "sport_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -119,38 +119,38 @@ ActiveRecord::Schema.define(version: 20170326205411) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                   default: "", null: false
+    t.string   "encrypted_password",      default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",           default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "name"
     t.integer  "address_id"
     t.date     "DateOfBirth"
     t.string   "user_name"
     t.integer  "permission"
     t.boolean  "active"
-    t.integer  "association_id"
+    t.integer  "official_association_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "addresses", "provinces"
   add_foreign_key "arenas", "addresses"
-  add_foreign_key "associations", "sports"
   add_foreign_key "games", "arenas"
   add_foreign_key "games", "leagues"
   add_foreign_key "games", "sports"
-  add_foreign_key "leagues", "associations"
+  add_foreign_key "leagues", "official_associations"
   add_foreign_key "leagues", "sports"
+  add_foreign_key "official_associations", "sports"
   add_foreign_key "provinces", "countries"
   add_foreign_key "users", "addresses"
-  add_foreign_key "users", "associations"
+  add_foreign_key "users", "official_associations"
 end
