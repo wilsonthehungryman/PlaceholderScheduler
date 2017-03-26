@@ -4,7 +4,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  belongs_to :address, :association
-  validates_associated :address, :association
+  belongs_to :address
+  belongs_to :association
+  validates_association :address
+  validates_association :association
   validates :name, :user_name, :permission, :active, presence: true
 end

@@ -4,4 +4,5 @@ class Association < ApplicationRecord
   belongs_to :sport
   validates_association :sport
   has_many :leagues
+  has_many :users
 end
