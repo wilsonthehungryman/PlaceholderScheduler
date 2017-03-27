@@ -32,12 +32,9 @@ ActiveRecord::Schema.define(version: 20170326215843) do
   create_table "addresses", force: :cascade do |t|
     t.string   "city"
     t.string   "street"
-    t.integer  "street_number"
     t.text     "notes"
-    t.string   "postal_code"
-    t.integer  "province_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -107,7 +104,6 @@ ActiveRecord::Schema.define(version: 20170326215843) do
   create_table "provinces", force: :cascade do |t|
     t.string   "name"
     t.string   "abbreviation"
-    t.integer  "country_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -142,7 +138,6 @@ ActiveRecord::Schema.define(version: 20170326215843) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "addresses", "provinces"
   add_foreign_key "arenas", "addresses"
   add_foreign_key "games", "arenas"
   add_foreign_key "games", "leagues"
@@ -150,7 +145,6 @@ ActiveRecord::Schema.define(version: 20170326215843) do
   add_foreign_key "leagues", "official_associations"
   add_foreign_key "leagues", "sports"
   add_foreign_key "official_associations", "sports"
-  add_foreign_key "provinces", "countries"
   add_foreign_key "users", "addresses"
   add_foreign_key "users", "official_associations"
 end
