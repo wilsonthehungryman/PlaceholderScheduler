@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329173057) do
+ActiveRecord::Schema.define(version: 20170329192453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,24 @@ ActiveRecord::Schema.define(version: 20170329173057) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "site_contents", force: :cascade do |t|
+    t.string   "page"
+    t.integer  "index"
+    t.boolean  "active"
+    t.integer  "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "site_images", force: :cascade do |t|
+    t.string   "image"
+    t.string   "name"
+    t.string   "description"
+    t.string   "alt"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "sports", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -135,12 +153,7 @@ ActiveRecord::Schema.define(version: 20170329173057) do
     t.integer  "address_id"
     t.date     "DateOfBirth"
     t.string   "user_name"
-<<<<<<< HEAD
-    t.integer  "permission"
-    t.boolean  "active"
-=======
     t.integer  "permission",              default: 0
->>>>>>> creating_login_devise
     t.integer  "official_association_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -155,6 +168,7 @@ ActiveRecord::Schema.define(version: 20170329173057) do
   add_foreign_key "leagues", "sports"
   add_foreign_key "official_associations", "sports"
   add_foreign_key "provinces", "countries"
+  add_foreign_key "site_contents", "site_images", column: "image_id"
   add_foreign_key "users", "addresses"
   add_foreign_key "users", "official_associations"
 end
