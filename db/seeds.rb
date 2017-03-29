@@ -9,21 +9,26 @@
 # { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.destroy_all
+Game.destroy_all
+Arena.destroy_all
+League.destroy_all
+OfficialAssociation.destroy_all
+Sport.destroy_all
+Address.destroy_all
+Province.destroy_all
+Country.destroy_all
 AdminUser.create!(email: 'wilsonthehungryman@gmail.com',
                   password: 'andhebelike,passwordISpassword',
                   password_confirmation: 'andhebelike,passwordISpassword')
 
-Country.destroy_all
 canada = Country.create(name: 'Canada', abbreviation: 'CAN')
 
-Province.destroy_all
 mb = Province.create(name: 'Manitoba', abbreviation: 'MB', country: canada)
 
 Province.create(name: 'Alberta', abbreviation: 'AB', country: canada)
 Province.create(name: 'Ontario', abbreviation: 'ON', country: canada)
 Province.create(name: 'British Columbia', abbreviation: 'BC', country: canada)
 
-Address.destroy_all
 Address.create(city: 'Winnipeg',
                street: 'Harvard Ave.',
                street_number: '246',
@@ -42,19 +47,18 @@ address = Address.create(city: 'Brandon',
                          postal_code: 'a1a1a1',
                          province: mb)
 
-Sport.destroy_all
 sport = Sport.create(name: 'Volleyball')
 
 Sport.create(name: 'BaseBall')
 
-OfficialAssociation.destroy_all
 association = OfficialAssociation
               .create(name: 'Manitoba Volleyball Officials Association',
                       acronym: 'MVOA', sport: sport)
 
 OfficialAssociation.create(name: 'Evil America', acronym: 'ELMA', sport: sport)
 
-League.destroy_all
+OfficialAssociation.create(name: 'none', acronym: 'none', sport: sport)
+
 league = League.create(name: 'Winnipeg Coed Volleyball League',
                        acronym: 'WCVL',
                        female: true,
@@ -63,12 +67,10 @@ league = League.create(name: 'Winnipeg Coed Volleyball League',
                        sport: sport,
                        official_association: association)
 
-Arena.destroy_all
 arena = Arena.create(name: 'Court of Doom',
                      court_identifier: 'where the floor used to be',
                      address: address)
 
-Game.destroy_all
 Game.create(date: Time.now,
             away: 'not home',
             home: 'homey',
