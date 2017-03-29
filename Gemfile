@@ -57,6 +57,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'carrierwave', '~> 1.0'
 gem 'devise'
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 gem 'slim-rails', '~> 3.1'
