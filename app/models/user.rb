@@ -5,8 +5,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :address
-  #belongs_to :association
+  belongs_to :official_association
   validates_associated :address
-  #validates_association :association
-  validates :name, :user_name, :permission, :active, presence: true
+  validates :name, :user_name, :permission, presence: true
+
+  before_create do
+    # self.active = false
+    self.permission = 0
+    self.official_association = OfficialAssociation.where(name: 'none').first
+  end
 end
