@@ -12,6 +12,7 @@ AdminUser.destroy_all
 Game.destroy_all
 Arena.destroy_all
 League.destroy_all
+User.destroy_all
 OfficialAssociation.destroy_all
 Sport.destroy_all
 Address.destroy_all
@@ -29,11 +30,11 @@ Province.create(name: 'Alberta', abbreviation: 'AB', country: canada)
 Province.create(name: 'Ontario', abbreviation: 'ON', country: canada)
 Province.create(name: 'British Columbia', abbreviation: 'BC', country: canada)
 
-Address.create(city: 'Winnipeg',
-               street: 'Harvard Ave.',
-               street_number: '246',
-               postal_code: 'R3M 0K7',
-               province: mb)
+home = Address.create(city: 'Winnipeg',
+                      street: 'Harvard Ave.',
+                      street_number: '246',
+                      postal_code: 'R3M 0K7',
+                      province: mb)
 
 Address.create(city: 'Winnipeg',
                street: 'Yale Ave.',
@@ -77,3 +78,11 @@ Game.create(date: Time.now,
             league: league,
             sport: sport,
             arena: arena)
+
+User.create(name: 'Wilson Reid',
+            user_name: 'wilson',
+            email: 'wilsonthehungryman@gmail.com',
+            password: 'simplepwd',
+            password_confirmation: 'simplepwd',
+            permission: 100,
+            address: home)

@@ -1,0 +1,5 @@
+= link_to 'Change Password', edit_user_password_path
+= form_for @user, url: profile_view_path do |f|
+  = f.date_field :birthday
+  = render partial: 'shared/address_edit'
+  
