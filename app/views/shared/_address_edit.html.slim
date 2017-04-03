@@ -1,6 +1,21 @@
 = form_for :address do |addr_f|
+  = addr_f.label :street
+  br
   = addr_f.text_field :street
+  br
+  = addr_f.label :street_number
+  br
   = addr_f.text_field :street_number
+  br
+  = addr_f.label :notes 
+  br
   = addr_f.text_field :notes
+  br
+  = addr_f.label :postal_code 
+  br
   = addr_f.text_field :postal_code
+  br
+  = addr_f.label :city 
+  br
   = addr_f.text_field :city
+  br

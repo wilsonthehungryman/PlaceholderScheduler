@@ -1,3 +1,4 @@
+#
 class ProfileController < ApplicationController
   def edit
     @user = User.find(params[:id])

@@ -1,0 +1,26 @@
+.user.card
+  .card-block
+    h2.class-title = user.name
+    p
+      strong Email:
+      = user.email
+      strong Date of Birth:
+      = user.birthday
+    - address = user.address
+    - if address.nil?
+      p = user.name
+        | has not entered an address
+    h4 Address
+    - if user.address.nil?
+      p 
+        strong 
+        = user.name
+        |  has not entered a address
+    - else
+      p 
+        strong Street:
+        = address.street
+        strong Street Number:
+        = address.street_number
+        strong City:
+        = address.city

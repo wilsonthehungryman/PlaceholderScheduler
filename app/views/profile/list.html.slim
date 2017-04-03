@@ -1,2 +1,3 @@
-h1 Profile#list
-p Find me in app/views/profile/list.html.slim
+/ = render partial: 'show', collection: @users
+- @users.each do |u|
+  = render 'show', user: u
