@@ -18,6 +18,9 @@ Sport.destroy_all
 Address.destroy_all
 Province.destroy_all
 Country.destroy_all
+SiteContent.where(page: 'index').where(index: [0,1]).destroy_all
+
+
 AdminUser.create!(email: 'wilsonthehungryman@gmail.com',
                   password: 'andhebelike,passwordISpassword',
                   password_confirmation: 'andhebelike,passwordISpassword')
@@ -86,3 +89,10 @@ User.create(name: 'Wilson Reid',
             password_confirmation: 'simplepwd',
             permission: 100,
             address: home)
+
+SiteContent.create(page: 'index', index: 0, active: true,
+                   content: '## First sample content')
+
+SiteContent.create(page: 'index', index: 1, active: true,
+                   content: '## This application will help assignor assign '\
+                   'referees to games')
