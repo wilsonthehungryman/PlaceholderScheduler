@@ -1,2 +1,7 @@
-h1 PublicSite#pricing
-p Find me in app/views/public_site/pricing.html.slim
+.jumbotron
+  - if @contents.empty?
+    h1 PublicSite#pricing
+    p Find me in app/views/public_site/pricing.html.slim
+  - else
+    - @contents.each do |content|
+      div = render html: content.content.html_safe
