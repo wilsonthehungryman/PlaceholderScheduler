@@ -11,5 +11,5 @@ ActiveAdmin.register SiteContent do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  permit_params :page, :index, :active, :image_id
+  permit_params :page, :index, :active, :image_id, :content
 end
