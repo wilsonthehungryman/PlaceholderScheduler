@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'profile/list/:id', to: 'profile#list', as: 'profile_list'
 
+  get '/search', to: 'search#search', as: 'search'
+
   devise_for :users, controllers: { registrations: 'registrations' }
   root to: 'public_site#index'
 

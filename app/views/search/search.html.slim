@@ -1,0 +1,10 @@
+.jumbotron
+  br
+	br
+  h2 = @query
+  - unless @refs.empty?
+    - @refs.each do |ref|
+      p = ref.name
+  - unless @associations.empty?
+    - @associations.each do |ass|
+      p = ass.name
