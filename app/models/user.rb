@@ -7,11 +7,13 @@ class User < ApplicationRecord
   belongs_to :address
   belongs_to :official_association
   validates_associated :address
-  validates :name, :user_name, :permission, presence: true
+  validates :name, :permission, presence: true
 
   before_create do
     # self.active = false
     self.permission = 0
-    self.official_association = OfficialAssociation.where(name: 'none').first
+    if official_association.nil?
+      self.official_association = OfficialAssociation.where(name: 'none').first
+    end
   end
 end
