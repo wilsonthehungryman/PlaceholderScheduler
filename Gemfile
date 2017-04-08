@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'faker', '~> 1.4', '>= 1.4.3'
 end
 
 group :development do
@@ -57,6 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 gem 'autoprefixer-rails'
 gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'kaminari', '~> 1.0', '>= 1.0.1'
 # gem 'bootstrap-sass', '~> 3.2.0'
 gem 'carrierwave', '~> 1.0'
 gem 'devise'

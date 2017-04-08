@@ -1,4 +1,5 @@
 / = render partial: 'show', collection: @users
+= paginate @users
 .card-group
   - @users.each do |u|
     = render 'show', user: u
