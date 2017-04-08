@@ -278,6 +278,7 @@ DEPENDENCIES
   inherited_resources!
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari (~> 1.0, >= 1.0.1)
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
