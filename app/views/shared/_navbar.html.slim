@@ -1,5 +1,5 @@
 nav.navbar.navbar-toggleable-md.navbar-inverse.bg-light.bg-nav.fixed-top
-  button.navbar-toggler.navbar-toggler-right aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarsExampleDefault" data-toggle="collapse" type="button" 
+  button.navbar-toggler.navbar-toggler-right aria-controls="navbar" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbar" data-toggle="collapse" type="button" 
     span.navbar-toggler-icon
   = link_to 'Placeholder Name', root_path, class: 'navbar-brand'
   #navbar.collapse.navbar-collapse
@@ -16,7 +16,7 @@ nav.navbar.navbar-toggleable-md.navbar-inverse.bg-light.bg-nav.fixed-top
         li.nav-item.dropdown
           a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="/" 
             | My Account
-          .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+          .dropdown-menu aria-labelledby="navbar"
             = link_to 'Availability', root_path, class: 'dropdown-item'
             = link_to 'Preferences', root_path, class: 'dropdown-item'
             = link_to 'Profile', profile_edit_path(current_user), class: 'dropdown-item'
@@ -29,14 +29,76 @@ nav.navbar.navbar-toggleable-md.navbar-inverse.bg-light.bg-nav.fixed-top
           = link_to 'Contact', contact_path
     ul.nav.navbar-nav.navbar-right
       - if user_signed_in?
-        li.nav-item
+        li
           = link_to 'Log Out', destroy_user_session_path, method: :delete
-        li.nav-item
-          form.form-inline.mt-2.mt-md-0  action="/search" method="get"
-            input.form-control.mr-sm-2 placeholder="Search" type="text" /
-            button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
+        = form_tag('/search', method: 'get', class: 'form-inline mt-2 mt-md-0')
+          = text_field_tag(:query, nil, placeholder: 'Search', class: 'form-control mr-sm-2')
+          = button_tag('Search', class: 'btn btn-outline-success my-2 my-sm-0', name: nil)
       - else
-        li.nav-item
+        li 
           = link_to 'Register', new_user_registration_path
-        li.nav-item
+        li
           = link_to 'Log In', new_user_session_path
+
+
+
+
+  /!nav.navbar.navbar-toggleable-md.navbar-inverse.bg-nav.fixed-top
+    button.navbar-toggler.navbar-toggler-right aria-controls="navbar" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbar" data-toggle="collapse" type="button" 
+      span.navbar-toggler-icon
+    = link_to 'Placeholder Name', root_path, class: 'navbar-brand'
+    #navbar.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          = link_to 'Home', root_path
+        - if user_signed_in?
+          li.nav-item 
+            = link_to 'Games', root_path
+          li.nav-item 
+            = link_to 'Tutorial', root_path
+          li.nav-item
+            = link_to 'My Refs', profile_list_path(current_user.official_association)
+          li.nav-item.dropdown
+            a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="/" 
+              | My Account
+            .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+              = link_to 'Availability', root_path, class: 'dropdown-item'
+              = link_to 'Preferences', root_path, class: 'dropdown-item'
+              = link_to 'Profile', profile_edit_path(current_user), class: 'dropdown-item'
+        - else
+          li.nav-item
+            = link_to 'Demo', demo_path
+          li.nav-item
+            = link_to 'About', about_path
+          li.nav-item
+            = link_to 'Contact', contact_path
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          = form_tag('/search', method: 'get', class: 'form-inline mt-2 mt-md-0')
+            = text_field_tag(:query, nil, placeholder: 'Search', class: 'form-control mr-sm-2')
+            = button_tag('Search', class: 'btn btn-outline-success my-2 my-sm-0', name: nil)
+          li
+            = link_to 'Log Out', destroy_user_session_path, method: :delete
+        - else
+          li.nav-item
+            = link_to 'Register', new_user_registration_path
+          li.nav-item
+            = link_to 'Log In', new_user_session_path
+
+          /!  nav.navbar.navbar-toggleable-md.navbar-inverse.fixed-top.bg-inverse
+                  button.navbar-toggler.navbar-toggler-right aria-controls="navbarCollapse" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarCollapse" data-toggle="collapse" type="button" 
+                    span.navbar-toggler-icon
+                  a.navbar-brand href="#"  Fixed navbar
+                  #navbarCollapse.collapse.navbar-collapse
+                    ul.navbar-nav.mr-auto
+                      li.nav-item.active
+                        a.nav-link href="#" 
+                          | Home
+                          span.sr-only (current)
+                      li.nav-item
+                        a.nav-link href="#"  Link
+                      li.nav-item
+                        a.nav-link.disabled href="#"  Disabled
+                    form.form-inline.mt-2.mt-md-0
+                      input.form-control.mr-sm-2 placeholder="Search" type="text" /
+                      button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
