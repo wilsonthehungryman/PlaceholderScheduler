@@ -1,6 +1,6 @@
 / = render partial: 'show', collection: @users
-= paginate @users
+= paginate @users, views_prefix: 'profile'
 .card-group
   - @users.each do |u|
     = render 'show', user: u
-= paginate @users
+= paginate @users, views_prefix: 'profile'
