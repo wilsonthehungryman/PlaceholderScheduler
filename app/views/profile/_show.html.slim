@@ -11,11 +11,37 @@
         a.nav-link href="#status-#{user.id}" data-toggle="tab" role="tab" Status
   .card-block.tab-content
     .tab-pane.active role="tabpanel" id="profile-#{user.id}"
-      h4 profile
+      .card-block
+        h4.card-title
+          = user.name
+        ul.list-group.list-group-flush
+          li.list-group-item
+            strong Email:&nbsp;
+            = user.email
+          li.list-group-item
+            strong Birthday:&nbsp;
+            = user.birthday.nil? ? 'No birthday entered' : user.birthday
     .tab-pane role="tabpanel" id="address-#{user.id}"
-      h4 address
+      ul.list-group.list-group-flush
+        - if user.address.nil?
+          li.list-group-item
+            strong 
+            = user.name
+            |  has not entered a address
+        - else
+          li.list-group-item 
+            strong Street:&nbsp
+            span.text-center = user.address.street
+          li.list-group-item
+            strong Street Number:&nbsp
+            = user.address.street_number
+          li.list-group-item
+            strong City:&nbsp
+            = user.address.city
     .tab-pane role="tabpanel" id="status-#{user.id}"
       h4 status
+  .card-footer
+    = link_to 'Edit', profile_edit_path(user)
   
   
   /!h2.class-header = user.name
