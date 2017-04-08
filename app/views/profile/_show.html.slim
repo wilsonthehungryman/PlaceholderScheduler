@@ -1,6 +1,6 @@
 .user.card.text-center
   .card-header
-    #cardTabName.text-left
+    .text-left
       h2 = user.name
     ul.nav.nav-tabs.card-header-tabs role="tablist"
       li.nav-item
@@ -30,13 +30,13 @@
             |  has not entered a address
         - else
           li.list-group-item 
-            strong Street:&nbsp
+            strong Street:&nbsp;
             span.text-center = user.address.street
           li.list-group-item
-            strong Street Number:&nbsp
+            strong Street Number:&nbsp;
             = user.address.street_number
           li.list-group-item
-            strong City:&nbsp
+            strong City:&nbsp;
             = user.address.city
     .tab-pane role="tabpanel" id="status-#{user.id}"
       h4 status
