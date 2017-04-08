@@ -27,58 +27,16 @@ nav.navbar.navbar-toggleable-md.navbar-inverse.bg-light.bg-nav.fixed-top
           = link_to 'About', about_path
         li.nav-item
           = link_to 'Contact', contact_path
-  ul.nav.navbar-nav.navbar-right
-    - if user_signed_in?
-      form.form-inline.mt-2.mt-md-0  action="/search" method="get"
-        input.form-control.mr-sm-2 placeholder="Search" type="text" /
-        button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
-      li
-        = link_to 'Log Out', destroy_user_session_path, method: :delete
-    - else
-      li 
-        = link_to 'Register', new_user_registration_path
-      li
-        = link_to 'Log In', new_user_session_path
-
-
-  /!.container
-    .navbar-header
-      button.navbar-toggler.collapsed[type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"]
-        span.sr-only
-          | Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      = link_to 'Placeholder Name', root_path, class: 'navbar-brand'
-    #navbar.navbar-collapse.collapse
-      ul.nav.navbar-nav
-        li
-          = link_to 'Home', root_path
-        - if user_signed_in?
-          li 
-            = link_to 'Games', root_path
-          li 
-            = link_to 'Availability', root_path
-          li 
-            = link_to 'Preferences', root_path
-          li 
-            = link_to 'Profile', profile_edit_path(current_user)
-          li
-            = link_to 'My Refs', profile_list_path(current_user.official_association)
-        li
-          = link_to 'Demo', demo_path
-        li
-          = link_to 'About', about_path
-        li
-          = link_to 'Contact', contact_path
-      ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          li
-            = link_to 'Log Out', destroy_user_session_path, method: :delete
-        - else
-          li 
-            = link_to 'Register', new_user_registration_path
-          li
-            = link_to 'Log In', new_user_session_path
-
-/! nav.navbar.navbar-light.navbar-fixed-top
+    ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        li.nav-item
+          = link_to 'Log Out', destroy_user_session_path, method: :delete
+        li.nav-item
+          form.form-inline.mt-2.mt-md-0  action="/search" method="get"
+            input.form-control.mr-sm-2 placeholder="Search" type="text" /
+            button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
+      - else
+        li.nav-item
+          = link_to 'Register', new_user_registration_path
+        li.nav-item
+          = link_to 'Log In', new_user_session_path
