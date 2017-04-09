@@ -1,19 +1,27 @@
 #
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   belongs_to :address
   belongs_to :official_association
   validates_associated :address
-  validates :name, :permission, presence: true
+
+  validates :name, presence: true
+  validates :active, :permission, :association_fees_paid,
+            presence: true, on: :update
+
+  def not_set(field)
+    field.nil? || field.empty?
+  end
 
   before_create do
-    # self.active = false
-    self.permission = 0
-    if official_association.nil?
-      self.official_association = OfficialAssociation.where(name: 'none').first
-    end
+    self.official_association ||= OfficialAssociation.where(name: 'none').first
+    self.permission             = 0 if not_set games_reffed
+    self.active                 = false if not_set active
+    self.association_fees_paid  = false if not_set association_fees_paid
+    self.games_reffed           = 0 if not_set games_reffed
+    self.games_cancelled        = 0 if not_set games_cancelled
+    self.games_missed           = 0 if not_set games_missed
   end
 end
