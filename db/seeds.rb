@@ -138,5 +138,7 @@ end
                     else
                       1
                     end
+  user.active = (c % 3).zero?
+  user.association_fees_paid = (c % 6).zero?
   user.save!
 end

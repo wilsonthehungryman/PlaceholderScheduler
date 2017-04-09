@@ -18,8 +18,8 @@ class User < ApplicationRecord
   before_create do
     self.official_association ||= OfficialAssociation.where(name: 'none').first
     self.permission             = 0 if not_set games_reffed
-    self.active                 = false if not_set active
-    self.association_fees_paid  = false if not_set association_fees_paid
+    self.active                 = false if active.nil?
+    self.association_fees_paid  = false if association_fees_paid.nil?
     self.games_reffed           = 0 if not_set games_reffed
     self.games_cancelled        = 0 if not_set games_cancelled
     self.games_missed           = 0 if not_set games_missed
