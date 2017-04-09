@@ -16,7 +16,7 @@ class User < ApplicationRecord
   end
 
   before_create do
-    self.official_association ||= OfficialAssociation.where(name: 'none').first
+    self.official_association ||= OfficialAssociation.find_by(name: 'none')
     self.permission             = 0 if not_set games_reffed
     self.active                 = false if active.nil?
     self.association_fees_paid  = false if association_fees_paid.nil?
