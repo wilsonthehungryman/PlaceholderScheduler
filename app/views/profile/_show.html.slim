@@ -1,4 +1,4 @@
-.user.card.text-center
+.user.card.text-center data-user-fees="#{user.association_fees_paid}" data-user-active="#{user.active}"
   .card-header
     .text-left
       h2 = user.name
@@ -39,6 +39,21 @@
             strong City:&nbsp;
             = user.address.city
     .tab-pane role="tabpanel" id="status-#{user.id}"
-      h4 status
+      ul.list-group.list-group-flush
+        li.list-group-item
+          strong Association Fees Paid:&nbsp;
+          = user.association_fees_paid ? 'yes' : 'no';
+        li.list-group-item
+          strong Active:&nbsp;
+          = user.active ? 'yes' : 'no';
+        li.list-group-item
+          strong Games Reffed:&nbsp;
+          = user.games_reffed
+        li.list-group-item
+          strong Games Missed (no notice):&nbsp;
+          = user.games_missed
+        li.list-group-item
+          strong Games Cancelled (notice given):&nbsp;
+          = user.games_cancelled
   .card-footer
     = link_to 'Edit', profile_edit_path(user)
