@@ -9,8 +9,8 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  .container
-    = render partial: 'shared/navbar'
+  = render partial: 'shared/navbar'
+  .container.body-content
     = yield
   .container
     - flash.each do |key, value| 

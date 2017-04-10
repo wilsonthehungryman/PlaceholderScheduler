@@ -1,0 +1,18 @@
+AllCops:
+  Exclude:
+    - db/**/*
+    - config/**/*
+    - script/**/*
+    - bin/**/*
+    - test/**/*
+    - app/admin/**/*
+    - Gemfile
+
+Encoding:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 99

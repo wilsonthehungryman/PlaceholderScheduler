@@ -1,26 +1,59 @@
-.user.card
-  .card-block
-    h2.class-title = user.name
-    p
-      strong Email:
-      = user.email
-      strong Date of Birth:
-      = user.birthday
-    - address = user.address
-    - if address.nil?
-      p = user.name
-        | has not entered an address
-    h4 Address
-    - if user.address.nil?
-      p 
-        strong 
-        = user.name
-        |  has not entered a address
-    - else
-      p 
-        strong Street:
-        = address.street
-        strong Street Number:
-        = address.street_number
-        strong City:
-        = address.city
+.user.card.text-center data-user-fees="#{user.association_fees_paid}" data-user-active="#{user.active}"
+  .card-header
+    .text-left
+      h2 = user.name
+    ul.nav.nav-tabs.card-header-tabs role="tablist"
+      li.nav-item
+        a.nav-link.active href="#profile-#{user.id}" data-toggle="tab" role="tab"  Profile
+      li.nav-item
+        a.nav-link href="#address-#{user.id}" data-toggle="tab" role="tab" Address
+      li.nav-item
+        a.nav-link href="#status-#{user.id}" data-toggle="tab" role="tab" Status
+  .card-block.tab-content
+    .tab-pane.active role="tabpanel" id="profile-#{user.id}"
+      .card-block
+        h4.card-title
+          = user.name
+        ul.list-group.list-group-flush
+          li.list-group-item
+            strong Email:&nbsp;
+            = user.email
+          li.list-group-item
+            strong Birthday:&nbsp;
+            = user.birthday.nil? ? 'No birthday entered' : user.birthday
+    .tab-pane role="tabpanel" id="address-#{user.id}"
+      ul.list-group.list-group-flush
+        - if user.address.nil?
+          li.list-group-item
+            strong 
+            = user.name
+            |  has not entered a address
+        - else
+          li.list-group-item 
+            strong Street:&nbsp;
+            span.text-center = user.address.street
+          li.list-group-item
+            strong Street Number:&nbsp;
+            = user.address.street_number
+          li.list-group-item
+            strong City:&nbsp;
+            = user.address.city
+    .tab-pane role="tabpanel" id="status-#{user.id}"
+      ul.list-group.list-group-flush
+        li.list-group-item
+          strong Association Fees Paid:&nbsp;
+          = user.association_fees_paid ? 'yes' : 'no';
+        li.list-group-item
+          strong Active:&nbsp;
+          = user.active ? 'yes' : 'no';
+        li.list-group-item
+          strong Games Reffed:&nbsp;
+          = user.games_reffed
+        li.list-group-item
+          strong Games Missed (no notice):&nbsp;
+          = user.games_missed
+        li.list-group-item
+          strong Games Cancelled (notice given):&nbsp;
+          = user.games_cancelled
+  .card-footer
+    = link_to 'Edit', profile_edit_path(user)
