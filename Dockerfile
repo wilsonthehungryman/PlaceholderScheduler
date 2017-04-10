@@ -1,26 +1,16 @@
-FROM ruby:2.3.3
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
-RUN mkdir /PlaceholderScheduler
-WORKDIR /PlaceholderScheduler
-ADD Gemfile /PlaceholderScheduler/Gemfile
-ADD Gemfile.lock /PlaceholderScheduler/Gemfile.lock
-RUN bundle install
-ADD . /PlaceholderScheduler
+FROM nginx
 
-#FROM nginx
+#RUN rm /etc/nginx/conf.d/default.conf
 
-#RUN apt-get update
+#RUN rm /etc/nginx/conf.d/examplessl.conf
 
-## RUBY
-RUN apt-get install -y -q ruby ruby-dev rubygems irb build-essential libssl-dev zlib1g-dev
+#COPY content /usr/share/nginx/html
 
-## RAILS
-#RUN gem install rails --no-ri --no-rdoc
-#RUN gem install bundler
+COPY ./nginx.conf /etc/nginx
 
-#RUN apt-get install git
+#RUN rm /etc/nginx/sites-enabled/default
+#ADD placeholder.conf /etc/nginx/sites-enabled/placeholder.conf
 
-## RAILS APP
-#ADD . /srv/PlaceholderScheduler
-#RUN cd /srv/PlaceholderScheduler; bundle install
-#EXPOSE 3000
+RUN mkdir /app/
+RUN mkdir /app/placeholder
+COPY ./* /app/placeholder
