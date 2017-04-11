@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'profile/edit/:id', to: 'profile#edit', as: 'profile_edit'
 
+  patch 'profile/update/:id', to: 'profile#update', as: 'profile_update'
+
   get 'profile/view/:id', to: 'profile#view', as: 'profile_view'
 
   get 'profile/list/:id', to: 'profile#list', as: 'profile_list'

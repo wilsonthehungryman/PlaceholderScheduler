@@ -1,12 +1,9 @@
 = link_to 'Change Password', edit_user_password_path
-= form_for @user, url: profile_view_path do |f|
+= form_for @user, url: profile_update_path do |f|
   .field.form-group
     = f.label :birthday, class: 'form-label'
     br
     = f.date_field :birthday, class: 'form-control'
-  .field.form-group
-    = f.label :address, class: 'form-label'
-    br
-    = render partial: 'shared/address_edit'
+
   .actions
     = f.submit "Save", class: 'btn btn-primary'
