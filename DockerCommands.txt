@@ -1,0 +1,18 @@
+docker build -t tagname:latest .
+
+docker image list
+
+docker run --name name -d -P image_name
+
+
+
+docker exec -it naame bash
+docker exec -it naame psql
+
+docker logs container_name
+
+docker ps -a
+
+passenger
+
+(sudo) bundle exec passenger start

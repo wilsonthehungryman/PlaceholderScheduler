@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: PlaceholderScheduler_production
+  database: PlaceholderScheduler
   username: PlaceholderScheduler
-  password: <%= ENV['PLACEHOLDERSCHEDULER_DATABASE_PASSWORD'] %>
+  password: PlaceholderSchedulerSchedulesThings
