@@ -36,7 +36,6 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'faker', '~> 1.4', '>= 1.4.3'
   # Use Puma as the app server
   # gem 'puma', '~> 3.0'
 end
@@ -67,6 +66,7 @@ gem 'kaminari', '~> 1.0', '>= 1.0.1'
 # gem 'bootstrap-sass', '~> 3.2.0'
 gem 'carrierwave', '~> 1.0'
 gem 'devise'
+gem 'faker', '~> 1.4', '>= 1.4.3'
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 gem 'redcarpet', '~> 3.4'
 gem 'slim-rails', '~> 3.1'

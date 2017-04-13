@@ -19,14 +19,16 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
+  host: 172.17.0.2
+  port: 5432
 
 development:
   <<: *default
   database: PlaceholderScheduler_development
   pool: 5
-  username: postgres
-  password:
+  username: PlaceholderScheduler
+  password: PlaceholderSchedulerSchedulesThings
   host: db
 
   # The specified database role being used to connect to postgres.
@@ -62,6 +64,8 @@ development:
 test:
   <<: *default
   database: PlaceholderScheduler_test
+  username: PlaceholderScheduler
+  password: PlaceholderSchedulerSchedulesThings
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -84,6 +88,10 @@ test:
 #
 production:
   <<: *default
-  database: PlaceholderScheduler
+  adapter: postgresql
+  host: 172.17.0.2
+  port: 5432
+  database: production
   username: PlaceholderScheduler
   password: PlaceholderSchedulerSchedulesThings
+  pool: 5

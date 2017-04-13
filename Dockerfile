@@ -6,7 +6,8 @@ FROM phusion/passenger-full:latest
 
 # Set correct environment variables.
 ENV HOME /root
-ENV PLACEHOLDERSCHEDULER_DATABASE_PASSWORD password
+#ENV PLACEHOLDERSCHEDULER_DATABASE_PASSWORD password
+ENV RAILS_ENV development
 
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
@@ -39,8 +40,13 @@ ADD postgres-env.conf /etc/nginx/main.d/postgres-env.conf
 ADD secret_key.conf /etc/nginx/main.d/secret_key.conf
 ADD gzip_max.conf /etc/nginx/conf.d/gzip_max.conf
 
+#RUN rvm use ruby-2.3.3
+RUN apt-get install -y nodejs && ln -sf /usr/bin/nodejs /usr/local/bin/node
+RUN gem install bundler
+
 COPY . home/app/webapp/placeholder
-RUN cd home/app/webapp/placeholder;bundle install
+RUN cd home/app/webapp/placeholder
+#;bundle install
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
