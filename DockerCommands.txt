@@ -4,8 +4,6 @@ docker image list
 
 docker run --name name -d -P image_name
 
-
-
 docker exec -it naame bash
 docker exec -it naame psql
 
@@ -13,6 +11,20 @@ docker logs container_name
 
 docker ps -a
 
+docker volumne create --name=db-data
+
+docker-compose up
+
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
 passenger
 
 (sudo) bundle exec passenger start
+
+passenger-config about ruby-command
+
+rvm gemset empty
+rvm use ruby-2.3.3
+
+service nginx stop
+service nginx reload

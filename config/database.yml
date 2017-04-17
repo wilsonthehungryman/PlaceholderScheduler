@@ -17,19 +17,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  pool: 5
+  host: db
+  port: 5432
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: 5
-  host: 172.17.0.2
-  port: 5432
 
 development:
   <<: *default
-  database: PlaceholderScheduler_development
-  pool: 5
-  username: PlaceholderScheduler
-  password: PlaceholderSchedulerSchedulesThings
-  host: db
+  database: justref_development
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -63,9 +61,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: PlaceholderScheduler_test
-  username: PlaceholderScheduler
-  password: PlaceholderSchedulerSchedulesThings
+  database: justref_test
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -88,10 +86,7 @@ test:
 #
 production:
   <<: *default
-  adapter: postgresql
-  host: 172.17.0.2
-  port: 5432
-  database: production
-  username: PlaceholderScheduler
-  password: PlaceholderSchedulerSchedulesThings
-  pool: 5
+  host: prod-db
+  database: justref_production
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>

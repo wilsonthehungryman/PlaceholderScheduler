@@ -2,12 +2,12 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/passenger-docker/blob/master/Changelog.md for
 # a list of version numbers.
+#FROM phusion/passenger-full:0.9.20
 FROM phusion/passenger-customizable:0.9.20
-
-CMD ["/sbin/my_init"]
 
 # Set correct environment variables.
 ENV HOME /root
+ENV RAILS_ENV production
 
 RUN /pd_build/utilities.sh
 RUN /pd_build/ruby-2.3.*.sh
@@ -33,5 +33,13 @@ RUN gem install rails
 COPY Gemfile* ./
 RUN bundle install
 
+COPY . .
+
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+CMD ["/sbin/my_init"]
+
+# Use baseimage-docker's init process.
+#ENTRYPOINT ["/bin/bash", "-l", "/home/app/justref/fix-passenger.sh"]
+#ENTRYPOINT ["/sbin/my_init"]
