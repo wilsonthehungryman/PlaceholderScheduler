@@ -81,5 +81,7 @@ test:
 production:
   <<: *default
   database: PlaceholderScheduler_production
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
   #username: PlaceholderScheduler
   #password: <%= ENV['PLACEHOLDERSCHEDULER_DATABASE_PASSWORD'] %>
